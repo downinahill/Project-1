@@ -16,7 +16,7 @@ _Failure to make an attendance check will result in an unexcused absence for bot
 
 ## Project Proposal
 
-Create an issue in this repo using the [**Project Proposal** issue template](https://git.generalassemb.ly/SEIR-32221/project-1/issues/new?assignees=&labels=&template=proposal.md&title=Your+Name+-+Your+Squad+Lead) and submit it before the proposal submission deadline **Tuesday by 10:45PM EST**.  Make sure you complete **all of the prompts**.  Use the example proposal found [here](project_proposal_example.md) as a guide.
+Create an issue in this repo using the [**Project Proposal** issue template](https://git.generalassemb.ly/SEIR-bromeliad/project-1/issues) and submit it before the proposal submission deadline **Tuesday by 10:45PM EST**.  Make sure you complete **all of the prompts**.  Use the example proposal found [here](project_proposal_example.md) as a guide.
 
 Your proposal will be reviewed by the instructor team who will communicate feedback with you directly.
 
