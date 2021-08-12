@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html { 
+  background: url("https://imgur.com/MWAQ538") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.board.x .square:hover {
+
+}
+
+h1 {
+  margin: 50px;
+  
+}
+
+:root {
+  --square-size: 100px;
+  --mark-size: calc(var(--square-size) * .9);
+}
+
+body {
+  margin: 0;
+}
+
+.board {
+  display: grid;
+    width: 300px;
+    height: 300px;
+    grid-template-columns: auto auto auto;
+  }
+
+  .square {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    border: 3px solid black;
+    transition: background 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .square:first-child,
+  .square:nth-child(2),
+  .square:nth-child(3) {
+    border-top:none;
+  }
+
+  .square:nth-child(3n + 1) {
+    border-left:none;
+  }
+
+  .square:nth-child(3n + 3) {
+    border-right: none;
+  }
+
+  .square:last-child,
+  .square:nth-child(8),
+  .square:nth-child(7) {
+    border-bottom:none;
+  }
+
+  .square.x::before,
+  .square.x::after {
+    content: '';
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+  }
+
+  .squarecontainer {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  }
+  
+
+  .buttoncontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+
+  .buttons {
+    width: 100px;
+    height: 100px;
+}
+
+  button {
+    width: 50px;
+    height: 50px;
+    
+  }
