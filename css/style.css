@@ -6,7 +6,7 @@
 }
 
 html { 
-  background: url("https://imgur.com/MWAQ538") no-repeat center center fixed; 
+  background: url("https://imgur.com/RPs1O11") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -18,7 +18,7 @@ html {
 }
 
 h1 {
-  margin: 50px;
+  margin: 10px;
   
 }
 
@@ -33,15 +33,17 @@ body {
 
 .board {
   display: grid;
-    width: 300px;
-    height: 300px;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-content: center;
     grid-template-columns: auto auto auto;
   }
 
   .square {
     display: flex;
-    width: 100px;
-    height: 100px;
+    width: var(--square-size);/*100px*/
+    height: var(--square-size); /*100px*/
     justify-items: center;
     align-items: center;
     justify-content: center;
@@ -50,6 +52,7 @@ body {
     border: 3px solid black;
     transition: background 0.2s ease-in-out;
     cursor: pointer;
+    position: relative;
   }
 
   .square:first-child,
@@ -73,11 +76,25 @@ body {
   }
 
   .square.x::before,
-  .square.x::after {
+  .square.x::after,
+  .board.x .square:hover::before,
+  .board.x .square:hover::after {
     content: '';
     width: calc(var(--mark-size) * .15);
     height: var(--mark-size);
+    position: absolute;
+    background-color: black;
   }
+
+.square.x::before,
+.board.x .square:hover::before {
+  transform: rotate(45deg);
+}
+
+.square.x::after,
+.board.x .square:hover::after {
+  transform: rotate(-45deg);
+}
 
   .squarecontainer {
     display: flex;
@@ -88,7 +105,7 @@ body {
   }
   
 
-  .buttoncontainer {
+  .game-results {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -98,12 +115,12 @@ body {
 
 
   .buttons {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 25px;
 }
 
   button {
     width: 50px;
-    height: 50px;
+    height: 10px;
     
   }
