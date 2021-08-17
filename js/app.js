@@ -1,133 +1,167 @@
- const boardArr = ["", "", "", "", "", "", "", "", ""]
+ 
+let board = ["", "", "", "", "", "", "", "", ""]
 
-class Game {
+let indices = [
+  0, 1, 2, 
+  3, 4, 5, 
+  6, 7, 8
+]
+
+
+
+
+
+let winCombinations = [
+   [0, 1, 2],
+   [3, 4, 5],
+   [6, 7, 8],
+   [0, 3, 6],
+   [1, 4, 7],
+   [2, 5, 8],
+   [0, 4, 8],
+   [2, 4, 6]
+]
+
+let a = indices[0]
+let b = indices[1]
+let c = indices[2]
+let d = indices[3]
+let e = indices[4]
+let f = indices[5]
+let g = indices[6]
+let h = indices[7]
+let i = indices[8]
+
+let isGameActive = true
+let currentPlayer = "X"
+
+const playerxWon = "Player X won"
+const playeroWon = "Player O won"
+const tie = "Tie"
+
+
+class Player {
     constructor(name) {
     this.name = name
-    this.currentPlayer = null
-    this.winner = null
+    this.currentPlayer = "X"
+    this.winner = false
     
     }
-    win() {
-
-    }
-    lose() {
-
-    }
-    draw() {
-
-    }
-    reset() {
-        clearBoard()
-    }
+    
 }
 
 
 //Instantiating player objects from Game class
-const player1 = new Game("X")
+const player1 = new Player("X")
 console.log(player1)
-const player2 = new Game("O")
+const player2 = new Player("O")
 console.log(player2)
+const computer = new Player("O")
+console.log(computer)
 
 
 
-//Action Functions
-
-const game = () => {
-    
-}
-
-const player = "O";
-const computer = "X";
-
-const addPlayerMove = e => {
-  if (boardArr[e] == "") {
-    boardArr[e] = player;
-    
-    computerMove();
-  }
-};
-
-// function threeInARow() {
-//     if (document.querySelector("#square1") == document.querySelector("#square2") == document.querySelector("#square3")) {
-
-//     }
-//     if (document.querySelector("#square4") == document.querySelector("#square5") == document.querySelector("#square6")) {
-
-//     }
-//     if (document.querySelector("#square7") == document.querySelector("#square8") == document.querySelector("#square9")) {
-
-//     }
 
 
 
-// }
-
-function whosTurnIsIt() {
+const userInput = prompt("Will you be playing the computer? y/n")
+if (userInput == "y") {
 
 }
 
-function selectBox() {
 
-}
+const squares = Array.from(document.querySelectorAll(".square"))
+squares.forEach( (square, index) => {
+  square.addEventListener('click', () => userAction(square, index))
+})
 
-function checkWinner(move) {
-    
-        let result = false;
-        if (checkRow(1, 2, 3, move) ||
-            checkRow(4, 5, 6, move) ||
-            checkRow(7, 8, 9, move) ||
-            checkRow(1, 4, 7, move) ||
-            checkRow(2, 5, 8, move) ||
-            checkRow(3, 6, 9, move) ||
-            checkRow(1, 5, 9, move) ||
-            checkRow(3, 5, 7, move)) {
-  
-          result = true;
-        }
-  
-        return result;
-  
-}
 
-function checkRow(a, b, c, move) {//it's going to call 3 different squares to see if those 3 squares matches a parrticular move
-    let result = false;
-    if(getBox(a) == move && getBox(b) == move && getBox(c) == move){ //if three x are in a row it is going to have a true result
-      result = true;
+
+
+
+function checkWin() {
+  let roundWon = false
+  for (let i = 0; i <= 7; i++) {
+    const winCondition = winCombinations[i]
+    const a = board[winCondition[0]]
+    const b = board[winCondition[1]]
+    const c = board[winCondition[2]]
+    if (a === '' || b === '' || c === '') {
+      continue
     }
-    return result;
+    if (a == b && b == c) {
+      roundWon = true
+      break
+    }
   }
-  
-  function getBox() { //to identify the position of every box
-    return document.querySelector(".square" + `${boardArr[i]}`).innerHTML = `${boardArr[i]}`;//it will tell us what it is in the box
+  if (roundWon) {
+    announce(currentPlayer == "X" ? playerxWon : playeroWon)
+    isGameActive = false
+    return
   }
-  
-  function clearBox(number) {
-    document.querySelector(".square" + number).innerHTML = "";
-  }
-
-const computerMove = () => {
-    do {
-        chosenSquare = Math.floor(Math.random() * 9)
-    } while (boardArr[chosenSquare] != "")
-    boardArr[chosenSquare] = computer
-
-}
-console.log(computerMove())
-function clearBoard() {
-    
-    document.querySelector("#reset").innerHTML = "";
-      
-}
-
-function endGame() {
-
+  if (!board.includes(''))
+    announce(tie)
 }
 
 
-// Call functions
-addPlayerMove()
-computerMove()
-checkWinner()
+const isValid = (square) => {
+  if (square.innerText === "X" || square.innerText === "O") {
+    return false
+  }
+  return true
+}
 
-//Event Handlers
-document.querySelector(".buttons").addEventListener("click", clearBoard())
+
+
+const announcer = document.querySelector('#winner')
+function announce(type) {
+  switch(type) {
+    case playeroWon:
+      announcer.innerHTML = "Player <span class='playero'>O</span> Won"
+      break
+    case playerxWon:
+      announcer.innerHTML = "Player <span class='playero'>X</span> Won"
+      break
+    case tie:
+      announcer.innerText = "Tie"
+  }
+  announcer.classList.remove('hide')
+}
+
+
+
+const playerDisplay = document.querySelector('.player-display')
+
+function changePlayer() {
+  playerDisplay.classList.remove(`Player${currentPlayer}`)
+  currentPlayer = currentPlayer === "X" ? "O" : "X"
+  playerDisplay.innerText = currentPlayer
+  playerDisplay.classList.add(`Player${currentPlayer}`)
+}
+
+
+
+function updateBoard (index) {
+  board[index] = currentPlayer
+}
+
+
+const userAction = (square, index) => {
+  if (isValid(square) && isGameActive) {
+    square.innerText = currentPlayer
+    square.classList.add(`${currentPlayer}`)
+    updateBoard(index)
+    checkWin()
+    changePlayer()
+  }
+}
+
+
+
+
+
+function reload() {
+    location.reload();
+    return false;
+}
+

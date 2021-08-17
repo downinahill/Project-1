@@ -1,126 +1,81 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
-}
-
-html { 
-  background: url("https://imgur.com/RPs1O11") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.board.x .square:hover {
-
-}
-
-h1 {
-  margin: 10px;
-  
-}
-
-:root {
-  --square-size: 100px;
-  --mark-size: calc(var(--square-size) * .9);
-}
-
-body {
+  padding: 0;
   margin: 0;
 }
 
-.board {
+.background {
+  background-image: url("images\CUserswhichPicturesteethandeye.jpeg");
+  background-color: blue;
+  height: 100vh;
+  padding-top: 1px;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  font-size: 40px;
+  margin-top: 10%;
+}
+
+.display {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.hide {
+  display: none;
+}
+
+.container {
+  margin: 0 auto;
   display: grid;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-content: center;
-    grid-template-columns: auto auto auto;
-  }
-
-  .square {
-    display: flex;
-    width: var(--square-size);/*100px*/
-    height: var(--square-size); /*100px*/
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: bold;
-    border: 3px solid black;
-    transition: background 0.2s ease-in-out;
-    cursor: pointer;
-    position: relative;
-  }
-
-  .square:first-child,
-  .square:nth-child(2),
-  .square:nth-child(3) {
-    border-top:none;
-  }
-
-  .square:nth-child(3n + 1) {
-    border-left:none;
-  }
-
-  .square:nth-child(3n + 3) {
-    border-right: none;
-  }
-
-  .square:last-child,
-  .square:nth-child(8),
-  .square:nth-child(7) {
-    border-bottom:none;
-  }
-
-  .square.x::before,
-  .square.x::after,
-  .board.x .square:hover::before,
-  .board.x .square:hover::after {
-    content: '';
-    width: calc(var(--mark-size) * .15);
-    height: var(--mark-size);
-    position: absolute;
-    background-color: black;
-  }
-
-.square.x::before,
-.board.x .square:hover::before {
-  transform: rotate(45deg);
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 33%;
+  max-width: 300px;
 }
 
-.square.x::after,
-.board.x .square:hover::after {
-  transform: rotate(-45deg);
-}
-
-  .squarecontainer {
-    display: flex;
-  flex-direction: column;
-  align-items: center;
+.square {
+  border: 1px solid white;
+  min-width: 100px;
+  min-height: 100px;
+  display: flex;
   justify-content: center;
-  
-  }
-  
-
-  .game-results {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-  }
-
-
-  .buttons {
-    width: 50px;
-    height: 25px;
+  align-items: center;
+  font-size: 50px;
+  cursor: pointer;
 }
 
-  button {
-    width: 50px;
-    height: 10px;
-    
-  }
+.playerX {
+  color: red;
+}
+
+.playerO {
+  color: green;
+}
+
+/* .controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+} */
+
+#reset {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  background-color: indigo;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 20px;
+  margin-left: 1em;
+  cursor: pointer;
+}
