@@ -32,7 +32,9 @@ let g = indices[6]
 let h = indices[7]
 let i = indices[8]
 
+// initialize starting game variable to true
 let isGameActive = true
+// initialize the starting player to X
 let currentPlayer = "X"
 
 const playerxWon = "Player X won"
@@ -40,60 +42,39 @@ const playeroWon = "Player O won"
 const tie = "Tie"
 
 
-class Player {
-    constructor(name) {
-    this.name = name
-    this.currentPlayer = "X"
-    this.winner = false
-    
-    }
-    
-}
 
 
-//Instantiating player objects from Game class
-const player1 = new Player("X")
-console.log(player1)
-const player2 = new Player("O")
-console.log(player2)
-const computer = new Player("O")
-console.log(computer)
-
-
-
-
-
-
-const userInput = prompt("Will you be playing the computer? y/n")
-if (userInput == "y") {
-
-}
-
-
+// creates array from the grid of squares in html
 const squares = Array.from(document.querySelectorAll(".square"))
+// iterates through that array just created and adds a clickable event listener
+// to each square 
 squares.forEach( (square, index) => {
   square.addEventListener('click', () => userAction(square, index))
 })
 
-
+console.log(squares)
 
 
 
 function checkWin() {
+  // initialize win condition to false
   let roundWon = false
+  // iterate through the winCombinations array
   for (let i = 0; i <= 7; i++) {
     const winCondition = winCombinations[i]
     const a = board[winCondition[0]]
     const b = board[winCondition[1]]
     const c = board[winCondition[2]]
+    // if there's an empty box continue the game
     if (a === '' || b === '' || c === '') {
       continue
     }
+    // if any winning combination is found, roundWon becomes true and the game ends
     if (a == b && b == c) {
       roundWon = true
       break
     }
-  }
+  } // if game is won the winner is announced in the display section
   if (roundWon) {
     announce(currentPlayer == "X" ? playerxWon : playeroWon)
     isGameActive = false
@@ -102,9 +83,11 @@ function checkWin() {
   if (!board.includes(''))
     announce(tie)
 }
-
+console.log(checkWin)
 
 const isValid = (square) => {
+  // if the inner text of the square has an X or an O then it is not a 
+  // valid square in which to click
   if (square.innerText === "X" || square.innerText === "O") {
     return false
   }
@@ -127,18 +110,22 @@ function announce(type) {
   }
   announcer.classList.remove('hide')
 }
+console.log(announcer)
+console.log(announce)
 
+const showPlayer = document.querySelector('.display')
 
-
-const playerDisplay = document.querySelector('.player-display')
+// function changePlayer() {
+//   showPlayer.classList.remove(`Player${currentPlayer}`)
+//   currentPlayer = currentPlayer === "X" ? "O" : "X"
+//   showPlayer.innerText = currentPlayer
+//   showPlayer.classList.add(`Player${currentPlayer}`)
+// }
 
 function changePlayer() {
-  playerDisplay.classList.remove(`Player${currentPlayer}`)
   currentPlayer = currentPlayer === "X" ? "O" : "X"
-  playerDisplay.innerText = currentPlayer
-  playerDisplay.classList.add(`Player${currentPlayer}`)
+  showPlayer.innerHTML = currentPlayer
 }
-
 
 
 function updateBoard (index) {
@@ -159,7 +146,7 @@ const userAction = (square, index) => {
 
 
 
-
+// clear the board and reset the game
 function reload() {
     location.reload();
     return false;
