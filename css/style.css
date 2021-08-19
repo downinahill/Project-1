@@ -1,12 +1,10 @@
 * {
   padding: 0;
   margin: 0;
-
 }
 
-
 .background {
-  background-image: url("UserswhichPicturesteethandeye.jpeg");
+  background: url(images/0e0d2170-b77e-4d33-a1a5-a8522ebb7527.jpeg);
   background: linear-gradient(45deg, red, blue);
   
   height: 100vh;
@@ -49,23 +47,9 @@
   align-items: center;
   font-size: 50px;
   cursor: pointer;
+  background-size: cover;
 }
 
-.playerX {
-  color: red;
-}
-
-.playerO {
-  color: green;
-}
-
-/* .controls {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1em;
-} */
 
 #reset {
   display: flex;
