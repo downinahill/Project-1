@@ -3,12 +3,34 @@
   margin: 0;
 }
 
-.background {
-  background: url(images/0e0d2170-b77e-4d33-a1a5-a8522ebb7527.jpeg);
-  background: linear-gradient(45deg, red, blue);
+body {
+  background-image: url(https://images.complex.com/complex/image/upload/c_fill,g_center,w_1200/fl_lossy,pg_1,q_auto/RickAndMorty_yndlhd.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;    
+}
+
+.image-mask-darken {
   
-  height: 100vh;
-  padding-top: 1px;
+  background-position: center center;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%; 
+  color: black
+}
+
+.image-mask-darken:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  
+  content: "";
+  
 }
 
 .title {
@@ -19,7 +41,7 @@
 }
 
 .display {
-  color: white;
+  color: black;
   font-size: 25px;
   text-align: center;
   margin-top: 1em;
@@ -47,7 +69,10 @@
   align-items: center;
   font-size: 50px;
   cursor: pointer;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  
 }
 
 
@@ -66,4 +91,19 @@
   margin-left: 1em;
   margin-right: 1em;
   cursor: pointer;
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
 }
